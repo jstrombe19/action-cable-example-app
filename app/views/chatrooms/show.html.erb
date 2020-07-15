@@ -1,9 +1,31 @@
-<p id="notice"><%= notice %></p>
+<%# <p id="notice"><%= notice "%"></p> 
 
 <p>
   <strong>Topic:</strong>
-  <%= @chatroom.topic %>
+  <%= @chatroom.topic "%">
 </p>
 
-<%= link_to 'Edit', edit_chatroom_path(@chatroom) %> |
-<%= link_to 'Back', chatrooms_path %>
+<%= link_to 'Edit', edit_chatroom_path(@chatroom) "%"> |
+<%= link_to 'Back', chatrooms_path "%">
+
+Original content produced by rails g scaffold command. All % for ERB tags were encapsulated
+in order for the multi-line comment to apply through the end of the text content.
+
+%>
+
+<div class="row col-md-8 col-md-offset-2">
+  <h1><%= @chatroom.topic %></h1>
+
+  <div class="panel panel-default">
+    <% if @chatroom.messages.any? %>
+      <div class="panel-body" id="messages">
+        <%= render partial: 'messages/message', collection: @chatroom.messages %>
+      </div>
+    <% else %>
+      <div class="panel-body hidden" id="messages">
+      </div>
+    <% end %>
+  </div>
+
+  <%= render partial: 'messages/message_form', locals: {message: @message, chatroom: @chatroom} %>
+</div>
