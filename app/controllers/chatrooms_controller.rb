@@ -1,5 +1,5 @@
 class ChatroomsController < ApplicationController
-  before_action :set_chatroom, only: [:show, :edit, :update, :destroy]
+  before_action :set_chatroom, only: [:edit, :update, :destroy]
 
   # GET /chatrooms
   # GET /chatrooms.json
@@ -10,6 +10,8 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms/1
   # GET /chatrooms/1.json
   def show
+    @chatroom = Chatroom.find_by(slug: params[:slug])
+    @message = Message.new
   end
 
   # GET /chatrooms/new
